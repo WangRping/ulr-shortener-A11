@@ -7,6 +7,8 @@ const app = express()
 
 if (!process.env.NODE_ENV !== 'produciton') { require('dotenv').config() }
 
+require('./config/mongoose')
+
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
