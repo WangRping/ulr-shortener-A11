@@ -1,11 +1,12 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
+const Url = require('./models/url')
 
 const port = 3000
 const app = express()
 
-if (!process.env.NODE_ENV !== 'produciton') { require('dotenv').config() }
+if (process.env.NODE_ENV !== 'produciton') { require('dotenv').config() }
 
 require('./config/mongoose')
 
@@ -19,8 +20,10 @@ app.get('/', (req, res) => {
 })
 
 app.post('/create', (req, res) => {
-  const url = req.body.url
-  console.log(url)
+  const getUrl = req.body.url
+  Url.find()
+    .lean()
+    .then(url => console.log(url))
   res.render('index')
 })
 

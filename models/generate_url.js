@@ -1,4 +1,18 @@
+const Url = require('./url')
+if (process.env.NODE_ENV !== 'produciton') { require('dotenv').config() }
+require('../config/mongoose')
+
+let savedShortUrls = []
+
+Url.find()
+  .lean()
+  .then(url => {
+    url.forEach(item => savedShortUrls.push(item.shortUrl))
+    generateUrl()
+  })
+
 function generateUrl() {
+  console.log(savedShortUrls)
   const qty = 5
 
   const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz'
@@ -17,8 +31,9 @@ function generateUrl() {
     randomCharacters += box[Math.floor(Math.random() * box.length)]
   }
 
-  console.log(`for迴圈結果:${randomCharacters}`)
-
+  if (savedShortUrls.includes(randomCharacters)) {
+    generateUrl()
+  } else {
+    return savedShortUrls
+  }
 }
-
-generateUrl()
