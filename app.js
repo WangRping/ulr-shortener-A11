@@ -2,6 +2,7 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const Url = require('./models/url')
+const checkUrl = require('./models/check_url')
 
 const port = 3000
 const app = express()
@@ -21,9 +22,10 @@ app.get('/', (req, res) => {
 
 app.post('/create', (req, res) => {
   const getUrl = req.body.url
+  console.log(`瀏覽器傳進來的:${getUrl}`)
   Url.find()
     .lean()
-    .then(url => console.log(url))
+    .then(url => checkUrl(getUrl))
   res.render('index')
 })
 
