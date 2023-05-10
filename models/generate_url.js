@@ -12,7 +12,6 @@ Url.find()
   })
 
 function generateUrl() {
-  console.log(savedShortUrls)
   const qty = 5
 
   const lowerCaseLetters = 'abcdefghijklmnopqrstuvwxyz'
@@ -34,6 +33,8 @@ function generateUrl() {
   if (savedShortUrls.includes(randomCharacters)) {
     generateUrl()
   } else {
-    return savedShortUrls
+    return randomCharacters
   }
 }
+
+module.exports = generateUrl

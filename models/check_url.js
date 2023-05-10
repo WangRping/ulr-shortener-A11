@@ -5,21 +5,18 @@ require('../config/mongoose')
 let savedOriginUrls = []
 
 function main(getUrl) {
-  console.log(`main拿到的:${getUrl}`)
+  console.log(`main取得:${getUrl}`)
   Url.find()
     .lean()
     .then(urls => {
       urls.forEach(url => savedOriginUrls.push(url.originUrl))
-      checkUrl(getUrl, savedOriginUrls)
+      console.log(`main的回應:${checkUrl(getUrl, savedOriginUrls)}`)
+      return checkUrl(getUrl, savedOriginUrls)
     })
 }
 
 function checkUrl(getUrl, savedOriginUrls) {
-  console.log(`---函式開始---`)
-  console.log(savedOriginUrls)
-  console.log(getUrl)
-  console.log(savedOriginUrls.includes(getUrl))
-  console.log(`---函式結束---`)
+  return savedOriginUrls.includes(getUrl)
 }
 
 module.exports = main

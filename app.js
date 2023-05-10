@@ -3,6 +3,7 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const Url = require('./models/url')
 const checkUrl = require('./models/check_url')
+const generateUrl = require('./models/generate_url')
 
 const port = 3000
 const app = express()
@@ -22,10 +23,14 @@ app.get('/', (req, res) => {
 
 app.post('/create', (req, res) => {
   const getUrl = req.body.url
-  console.log(`瀏覽器傳進來的:${getUrl}`)
-  Url.find()
-    .lean()
-    .then(url => checkUrl(getUrl))
+  if (checkUrl(getUrl)) {
+    console.log('重複')
+  } else {
+    console.log('沒重複')
+    // console.log(getUrl)
+    const shortUrl = generateUrl()
+    // console.log(shortUrl)
+  }
   res.render('index')
 })
 
