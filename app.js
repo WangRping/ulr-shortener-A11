@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 app.post('/create', (req, res) => {
   async function dosmothing() {
     const getUrl = req.body.url
-    if (getUrl === '') { return res.send('缺少URL') }
+    // if (getUrl === '') { return res.send('缺少URL') }
 
     const checkUrlBoolean = await checkUrl(getUrl)
     if (checkUrlBoolean) {
