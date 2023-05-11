@@ -39,6 +39,11 @@ app.post('/create', (req, res) => {
   dosmothing()
 })
 
+app.get('/result/:shortUrl', (req, res) => {
+  const shortUrl = req.params.shortUrl
+  res.render('result', { shortUrl })
+})
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`)
 })
