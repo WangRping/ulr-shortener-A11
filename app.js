@@ -22,10 +22,18 @@ app.get('/', (req, res) => {
 })
 
 app.post('/create', (req, res) => {
-  const getUrl = req.body.url
   async function dosmothing() {
+    const getUrl = req.body.url
+    if (getUrl === '') { return res.send('缺少URL') }
+
     const checkUrlBoolean = await checkUrl(getUrl)
     if (checkUrlBoolean) {
+      return Url.find({ originUrl: getUrl })
+        .lean()
+        .then(url => {
+          const shortUrl = url[0].shortUrl
+          res.redirect(`result/${shortUrl}`)
+        })
 
     } else if (!checkUrlBoolean) {
       const newShortUrl = await generateUrl()
@@ -42,6 +50,15 @@ app.post('/create', (req, res) => {
 app.get('/result/:shortUrl', (req, res) => {
   const shortUrl = req.params.shortUrl
   res.render('result', { shortUrl })
+})
+
+app.get('/shortener/:shortUrl', (req, res) => {
+  const getShortUrl = req.params.shortUrl
+  return Url.find({ shortUrl: getShortUrl })
+    .lean()
+    .then(url => {
+      res.redirect(url[0].originUrl)
+    })
 })
 
 app.listen(port, () => {
