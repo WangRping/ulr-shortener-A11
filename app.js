@@ -23,14 +23,16 @@ app.get('/', (req, res) => {
 
 app.post('/create', (req, res) => {
   const getUrl = req.body.url
-  if (checkUrl(getUrl)) {
-    console.log('重複')
-  } else {
-    console.log('沒重複')
-    // console.log(getUrl)
-    const shortUrl = generateUrl()
-    // console.log(shortUrl)
+  async function dosmothing() {
+    const checkUrlBoolean = await checkUrl(getUrl)
+    if (checkUrlBoolean) {
+
+    } else if (!checkUrlBoolean) {
+
+    }
   }
+  dosmothing()
+
   res.render('index')
 })
 
