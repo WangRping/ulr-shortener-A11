@@ -3,7 +3,6 @@ if (process.env.NODE_ENV !== 'produciton') { require('dotenv').config() }
 require('../config/mongoose')
 
 async function checkUrl(getUrl) {
-  console.log(`check_url.js得到的url:${getUrl}`)
   let savedOriginUrls = []
   await Url.find().lean().then(urls => urls.forEach(url => savedOriginUrls.push(url.originUrl)))
 

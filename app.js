@@ -28,12 +28,15 @@ app.post('/create', (req, res) => {
     if (checkUrlBoolean) {
 
     } else if (!checkUrlBoolean) {
-
+      const newShortUrl = await generateUrl()
+      console.log(newShortUrl, getUrl)
+      return Url.create({ originUrl: getUrl, shortUrl: newShortUrl })
+        .then(() => {
+          res.redirect(`/result/${newShortUrl}`)
+        })
     }
   }
   dosmothing()
-
-  res.render('index')
 })
 
 app.listen(port, () => {
