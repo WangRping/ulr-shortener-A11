@@ -25,9 +25,9 @@ app.get('/', (req, res) => {
 app.post('/create', (req, res) => {
   async function dosmothing() {
     const getUrl = req.body.url
-    // if (getUrl === '') { return res.send('缺少URL') }
-
     const checkUrlBoolean = await checkUrl(getUrl)
+
+    //檢查傳入的Url是否和之前存入的有重複，若有，會導出遠本的短網址
     if (checkUrlBoolean) {
       return Url.find({ originUrl: getUrl })
         .lean()
