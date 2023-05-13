@@ -1,10 +1,17 @@
-<div class="container">
+<div class="container w-50  p-5 border border-light border-2 rounded">
   <div class="row">
-    <h4>URL Shortener</h4>
-    <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png" alt="">
-    <h3>Success!Please use this link:</h3>
-    <a href="http://localhost:3000/shortener/{{shortUrl}}"
-      id="result-url">http://localhost:3000/shortener/{{shortUrl}}</a>
-    <button id="copy-button">Copy</button>
+    <div>
+      <img class="w-50 m-3 d-block mx-auto"
+        src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png" alt="">
+      <div>
+        <h3>Success!Please use this link:</h3>
+        <div class="d-flex ps-3 justify-content-between align-items-center border border-secondary-subtle rounded">
+          <a class="link-offset-2 link-underline link-underline-opacity-0"
+            href="http://localhost:3000/shortener/{{shortUrl}}"
+            id="result-url">http://localhost:3000/shortener/{{shortUrl}}</a>
+          <button class="btn btn-primary" id="copy-button">Copy</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
