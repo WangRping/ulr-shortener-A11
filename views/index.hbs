@@ -4,6 +4,7 @@
       <img class="w-50 m-3 d-block mx-auto"
         src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png" alt="">
       <form class="d-flex " action="/create" method="post">
+        {{!-- 用required的方式讓使用者必須填入該欄位 --}}
         <input class="form-control me-1" type="text" name="url" id="url" placeholder="Input URL here" required>
         <button class="btn btn-secondary " type="submit">Shortener</button>
       </form>
